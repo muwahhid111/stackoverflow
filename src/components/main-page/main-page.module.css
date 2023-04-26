@@ -1,0 +1,33 @@
+.searchInput{
+    height: 50px;
+    width: 800px;
+    outline: none;
+    font-size: 20px;
+}
+.searchDiv{
+    margin-left: 400px;
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+}
+.searchButton{
+    padding: 10px 60px 10px 60px;
+    border: 1px solid black;
+    height: 20px;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    height: 52px;
+    margin-left: 20px;
+    width: 300px;
+    background: none;
+}
+.table {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .cell {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+  }
