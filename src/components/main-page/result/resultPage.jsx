@@ -25,6 +25,7 @@ const Result = () => {
       `https://api.stackexchange.com/2.3/users/${userId}/questions/featured?order=desc&sort=activity&site=stackoverflow`
     );
     const res = await req.json();
+    console.log(res);
   };
   
 
@@ -33,7 +34,7 @@ const Result = () => {
   }, []);
   useEffect(() => {
     fun2();
-  }, []);
+  }, [userId]);
   console.log(userId);
   return (
     <>
