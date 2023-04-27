@@ -28,3 +28,12 @@ li {
   margin-top: 5px;
   cursor: pointer;
 }
+.modal {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
