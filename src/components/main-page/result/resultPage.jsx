@@ -1,11 +1,13 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import styles from "./resultPage.module.css";
-import { type } from "@testing-library/user-event/dist/type";
+
+import Questions from "../../Questions/Questions";
 
 const Result = () => {
   const [base, setBase] = useState([]);
-  const [userId, setUserId] = useState("");
+  const [userId, setUserId] = useState(null);
+  const [questions, setQuestions] = useState(null);
 
   const { keyWord } = useParams();
 
@@ -20,21 +22,27 @@ const Result = () => {
       )
     );
   };
-  const fun2 = async () => {
+  const fun2 = async (id) => {
     const req = await fetch(
-      `https://api.stackexchange.com/2.3/users/${userId}/questions/featured?order=desc&sort=activity&site=stackoverflow`
+      `https://api.stackexchange.com/2.3/users/${id}/questions?order=desc&sort=activity&site=stackoverflow`
     );
     const res = await req.json();
+    setQuestions(res.items);
   };
-  
-
+  const handleFetchUserById = (id) => {
+    setUserId(id);
+  };
   useEffect(() => {
     fun();
   }, []);
   useEffect(() => {
-    fun2();
-  }, []);
+    if (userId) {
+      fun2(userId);
+    }
+  }, [userId]);
+  //доделать
   console.log(userId);
+  console.log(questions);
   return (
     <>
       <div className={styles.table}>
@@ -47,7 +55,7 @@ const Result = () => {
         <div className={styles.cell2}>
           <ul className={styles.ul}>
             {base.map((item, index) => (
-              <li>{`${index + 1}) ${item.title}`}</li>
+              <li key={index}>{`${index + 1}) ${item.title}`}</li>
             ))}
           </ul>
         </div>
@@ -59,19 +67,25 @@ const Result = () => {
         <div className={styles.cell2}>
           <ul className={styles.ul}>
             {base.map((item, index) => (
-              <li>{`${index + 1}) ${item.answer_count}`}</li>
+              <li key={index}>{`${index + 1}) ${item.answer_count}`}</li>
             ))}
           </ul>
         </div>
         <div className={styles.cell2}>
           <ul className={styles.ul}>
             {base.map((item, index) => (
-              <li onClick={() => setUserId(item?.owner?.user_id)}>
+              <li
+                key={index}
+                onClick={() => handleFetchUserById(item?.owner?.user_id)}
+              >
                 {`${index + 1}) ${item.owner.display_name}`}{" "}
               </li>
             ))}
           </ul>
         </div>
+      </div>
+      <div className={styles.modal}>
+        {questions ? <Questions arr={questions} /> : ""}
       </div>
     </>
   );
