@@ -1,6 +1,7 @@
 .table {
   display: flex;
   flex-wrap: wrap;
+  margin-left: 70px;
 }
 .cell {
   width: 400px;
@@ -11,6 +12,7 @@
   text-align: center;
 }
 .table2 {
+    margin-left: 70px;
   display: flex;
   flex-wrap: wrap;
 }
@@ -27,4 +29,9 @@
 li {
   margin-top: 5px;
   cursor: pointer;
+}
+
+.searchButton{
+    text-decoration: none;
+    color: black;
 }
