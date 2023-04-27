@@ -7,7 +7,6 @@ const MainPage = () => {
   const handleValue = (e) => {
     setValue(e.target.value);
   };
-
   const onClickAdd = () => {
     setBase(
       base.filter((item) => {

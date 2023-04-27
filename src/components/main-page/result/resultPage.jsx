@@ -40,6 +40,7 @@ const Result = () => {
       fun2(userId);
     }
   }, [userId]);
+  //доделать
   console.log(userId);
   console.log(questions);
   return (
